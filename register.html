@@ -115,6 +115,7 @@ nav.mobile-nav .mobile-menu li a:hover {
 }
 
 
+
 header {
     text-align: center;
     margin-bottom: 30px;
@@ -285,6 +286,7 @@ header#shbb {
             }
         }
         .note-section {
+          width: 98%;
     max-width: 600px;
     margin: 0 auto;
     background-color: #ffffff; /* Lighter background */
@@ -313,7 +315,13 @@ header#shbb {
     
 }
 
-
+/* Laptop view adjustment */
+@media (min-width: 1024px) {
+    .note-section {
+        width: 98%; /* Set width to 98% for laptops */
+        max-width: none; /* Ensure it expands to 98% without max-width limitation */
+    }
+}
 
 
 
@@ -544,53 +552,213 @@ H5 {
 .wow-logo {
   font-family: 'Heebo', 'Arial', sans-serif; /* Use Heebo or another beautiful font */
   font-weight: bold;
-  font-size: 48px; /* Adjust to make it bigger */
-  color: #ff5733; /* Initial color */
+  font-size: 36px; /* Adjusted size to make it smaller */
+  color: #ffd700; /* Initial color */
   position: relative; /* Needed for the pseudo-element */
   padding: 10px; /* Add padding for space around the text */
   display: inline-block; /* Ensures padding works correctly */
   overflow: hidden; /* Hide the animated border line */
   background: #333; /* Background color to match the navbar and ensure visibility */
-  border-radius: 5px; /* Optional: Rounded corners for a polished look */
+  border-radius: 50%; /* Ensure the border follows a circular path */
 }
 
-/* Dashed underline animation */
+/* Rotating dashed border */
 .wow-logo::after {
   content: '';
   position: absolute;
-  bottom: 0; /* Position it at the bottom of the text */
-  left: 0;
-  height: 2px; /* Thickness of the underline */
-  width: 100%;
-  border-bottom: 2px dashed #ff5733; /* Dashed underline with initial color */
-  box-sizing: border-box;
-  transform: scaleX(0);
-  transform-origin: left; /* Start from the left */
-  animation: underline-animation 2s forwards, underline-color-change 4s ease-in-out forwards;
+  top: 50%;
+  left: 50%;
+  width: 140%; /* Increased size to move it farther away */
+  height: 140%;
+  border: 2px dashed #bdbeba; /* Dashed border with initial color */
+  border-radius: 50%; /* Make it circular */
+  transform: translate(-50%, -50%); /* Center it around the text */
+  animation: rotate-border 4s linear infinite; /* Continuous rotation */
 }
 
-/* Keyframes for dashed underline animation */
-@keyframes underline-animation {
+/* Keyframes for rotating the dashed border around the text */
+@keyframes rotate-border {
   0% {
-    transform: scaleX(0);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   100% {
-    transform: scaleX(1);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
-/* Keyframes for changing the color of the dashed underline */
-@keyframes underline-color-change {
-  0% {
-    border-bottom-color: #ff5733;
-  }
-  50% {
-    border-bottom-color: #ffffff; /* Intermediate color */
-  }
-  100% {
-    border-bottom-color: #ff5733;
+/* Dropdown styles */
+.dropdown-contentt {
+  display: none;
+  position: absolute;
+  background-color: rgba(52, 201, 168, 0.9); 
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(223, 22, 22, 0.2);
+  z-index: 1;
+}
+
+.dropdown-contentt a {
+  color: #46c9c2;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-contentt a:hover {
+  background-color: rgba(182, 28, 28, 0.3);
+}
+
+.dropdown:hover .dropdown-contentt {
+  display: block;
+}
+
+
+
+.main-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px; /* Reduced padding to minimize navbar height */
+  background-color: #000; /* Set navbar background to black */
+}
+
+.navbar-logo img {
+  height: 60px; /* Increased the height of the logo */
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  height: 60px; /* Match the height of the logo */
+}
+
+.navbar-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  height: 100%; /* Make links the same height as the container */
+  padding: 0 10px;
+  transition: color 0.3s, background-color 0.3s; /* Smooth transition for hover effects */
+}
+
+/* Hover effects for navbar links */
+.navbar-links li a:hover {
+  color: #000; /* Change text color to black on hover */
+  background-color: #ffffff; /* Change background color to white on hover */
+}
+
+@media only screen and (max-width: 1024px) {
+  .main-navbar {
+      display: none; /* Hide the navbar on screens smaller than laptops */
   }
 }
+#whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* Ensures the button is above other elements */
+}
+
+#whatsapp-button img {
+  border-radius: 50%; /* Optional: makes the image round */
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the button */
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+#scrollToTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 99;
+  width: 40px;
+  height: 40px;
+  background-color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#scrollToTopBtn:hover {
+  background-color: #333;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  transform: scale(1.1);
+}
+
+
+#scrollToTopBtn.show {
+  display: flex; /* Show button when scrolled */
+}
+
+#scrollToTopBtn:hover {
+  background-color: #333; /* Darker black on hover */
+}
+.popup-message {
+    position: fixed;
+    bottom: 80px; /* Adjust this value as needed */
+    right: 30px; /* Move the popup a little to the left */
+    background-color: #333; /* Dark background color for better readability */
+    color: #fff; /* Light text color */
+    padding: 10px 20px 10px 20px; /* Adjust padding for more space on the left */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    animation: fadeInOut 3s infinite;
+    font-size: 14px; /* Adjust font size if needed */
+    font-weight: 600; /* Slightly bold text */
+    text-align: center; /* Center the text */
+}
+
+.popup-message::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Position it at the bottom edge */
+    right: 10px; /* Adjust to align with the message box */
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent; /* Adjust size of the triangle */
+    border-right: 10px solid transparent; /* Adjust size of the triangle */
+    border-top: 10px solid #333; /* Match the background color */
+}
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+
     </style>
 </head>
 <body>
@@ -598,14 +766,22 @@ H5 {
     <div class="navbar-logo">
       <span class="wow-logo">WOW</span>
     </div>
-        <ul class="navbar-links">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="aboutus.html">ABOUT US</a></li>
-            <li><a href="abstract.html">ABSTRACT</a></li>
-            <li><a href="awards.html">AWARDS</a></li>
-            <li><a href="register.html">REGISTER</a></li>
-        </ul>
-      </nav>
+    <ul class="navbar-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="aboutus.html">ABOUT US</a></li>
+        <li class="dropdown">
+          <a href="" class="dropbtn">AGENDA</a>
+          <div class="dropdown-contentt">
+            <a href="conference.html">Conference</a>
+            <a href="workshop.html">Workshop</a>
+          </div>
+        </li>
+        <li><a href="abstract.html">ABSTRACT</a></li>
+        <li><a href="awards.html">AWARDS</a></li>
+        <li><a href="register.html">REGISTER</a></li>
+        
+    </ul>
+  </nav>
       
       <!-- Mobile Navbar -->
       <nav class="mobile-nav">
@@ -632,7 +808,7 @@ H5 {
     <hr class="line-below">
     
     <div class="content">
-        <h2 class="final-call-heading">EARLY BIRD CLOSING ON <span class="highlight-date">09-JUNE-2024</span></h2>
+        <h2 class="final-call-heading">EARLY BIRD CLOSING ON <span class="highlight-date">25-AUGUST-2024</span></h2>
     </div>
     <h3 class="wow-city-heading">WOW DENTISTRY-DUBAI</h3>
     <div class="container3">
@@ -782,7 +958,7 @@ H5 {
       </p>
       
             <p id="congress-info">
-              <i class="fa fa-whatsapp"></i> +971 55 909 8802
+              <i class="fa fa-whatsapp"></i> +971 55 909 8802;
             </p>
         </div>
       
@@ -811,6 +987,118 @@ H5 {
       <div class="year-line">
         <p id="congress-info">© Copyright 2024 All rights reserved</p>
       </div>
+      <button id="scrollToTopBtn" onclick="scrollToTop()">&uArr;</button>
+  <!-- WhatsApp Integration Button with Tooltip -->
+<div id="whatsapp-button" class="tooltip">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" style="width: 50px; height: 50px; cursor: pointer;">
+  <div class="popup-message">
+    <span>Need help?</span>
+    <span>Click me</span>
+</div>
+  <div id="whatsapp-message" style="display: none;">Hi *Wow congress*! I need more info about Wow congress https://wowcongress.com</div>
+</div>
+<script>
+  // Function to handle scroll behavior
+  function scrollToTop() {
+      // Scroll to the top of the document with smooth behavior
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+      });
+  }
+  
+  // Event listener to show/hide scroll-to-top button based on scroll position
+  window.addEventListener('scroll', function() {
+      var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+  
+      // Show button after scrolling down 300px
+      if (window.scrollY > 300) {
+          scrollToTopBtn.style.display = "block";
+      } else {
+          scrollToTopBtn.style.display = "none";
+      }
+  });
+  
+  
+  </script>
+  
+<script>
+  // Function to open WhatsApp chat with specified message
+function openWhatsAppChat() {
+  // Replace '1234567890' with your WhatsApp number
+  var phoneNumber = '+971 55 909 8802';
+  
+  // Get the message from the hidden div
+  var message = document.getElementById('whatsapp-message').innerText;
+  
+  // Encode the message for use in URL
+  var encodedMessage = encodeURIComponent(message);
+
+  // Construct the WhatsApp URL with phone number and message
+  var whatsappURL = 'https://wa.me/' + 971559098802 + '/?text=' + encodedMessage;
+
+  // Open the WhatsApp chat window in a new tab
+  window.open(whatsappURL, '_blank');
+}
+
+// Event listener to open WhatsApp chat when button is clicked
+document.getElementById('whatsapp-button').addEventListener('click', function() {
+  // Open WhatsApp chat with specified message
+  openWhatsAppChat();
+  
+  // Hide the tooltip after button click
+  var tooltip = document.querySelector('.tooltip .tooltiptext');
+  if (tooltip) {
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.opacity = 0;
+  }
+});
+
+</script>
+<script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+    </script>
+    <script src="scripts.js"></script>
+ <script>
+// Function to handle scroll navigation
+function scrollContainer(direction) {
+    const container = document.querySelector('.scroll-container');
+    const containerWidth = container.clientWidth;
+    const scrollAmount = containerWidth; // Scroll by one container width
+
+    let scrollPosition = container.scrollLeft;
+
+    if (direction === 'prev') {
+        scrollPosition -= scrollAmount;
+    } else if (direction === 'next') {
+        scrollPosition += scrollAmount;
+    }
+
+    // Calculate the nearest scroll snap point based on container width
+    scrollPosition = Math.round(scrollPosition / containerWidth) * containerWidth;
+
+    // Ensure scroll position stays within valid bounds
+    scrollPosition = Math.max(0, Math.min(scrollPosition, container.scrollWidth - containerWidth));
+
+    // Smooth scroll animation using scrollTo and scrollLeft
+    container.scrollTo({
+        left: scrollPosition,
+        behavior: 'smooth'
+    });
+}
+
+
+
+
+
+ </script>
     <script src="script.js"></script>
 
     <script src="script.js"></script>
