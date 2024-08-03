@@ -20,6 +20,7 @@ body {
     background-repeat: no-repeat;
     overflow-x: hidden; /* Prevent horizontal overflow */
     max-width: 100%; /* Ensure content does not exceed viewport width */
+    margin-bottom: 12px;
 }
 
 .content {
@@ -67,12 +68,15 @@ h1 {
         font-size: 18px; /* Increase font size */
         padding: 0 40px; /* Add left and right padding */
         margin-bottom: 20px; /* Add bottom margin for spacing between paragraphs */
+        margin-bottom: 10px;
     }
+   
     @media (max-width: 767px) {
         /* Media query for screens up to 767px (typically mobile devices) */
         .heebo-paragraph {
             line-height: 1.6;
             font-size: 24; /* Adjusted line height for mobile view */
+
         }
     }
     .scroll-wrapper {
@@ -157,7 +161,8 @@ p{
     color: #181717;
     font-size: 17px;
     font-family: 'Heebo', Arial, sans-serif;
-    font-weight: 400;
+    font-weight: 500;
+    
     
 }
 #item-details2 p{
@@ -184,7 +189,7 @@ h4 {
 /* Base styles for the nomination box */
 .nomination-box {
     overflow-x: hidden;
-    width: 75%;
+    width: 100%;
     padding: 30px;
     border-radius: 10px;
     margin: 0 auto;
@@ -198,7 +203,12 @@ h4 {
     animation: glowing-border 2s ease-in-out infinite alternate; /* Apply the glowing animation */
     border: 2px solid transparent; /* Transparent border for initial state */
 }
-
+/* Mobile view adjustment */
+@media (max-width: 768px) {
+    .nomination-box {
+        width: 90%;
+    }
+}
 /* Keyframe animation for the glowing effect */
 @keyframes glowing-border {
     0% {
@@ -238,7 +248,7 @@ h4 {
             text-decoration: underline;
         }
         .form-container {
-    width: 70%;
+    width: 99%;
     margin: 30px auto; /* Added margin-top for spacing */
     padding: 30px;
     border: 4px solid #c282c2;
@@ -246,6 +256,12 @@ h4 {
     background-image: url('gty.avif'); /* Replace 'gty.avif' with your desired background image URL */
     background-size: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Mobile view adjustment */
+@media (max-width: 768px) {
+    .form-container {
+        width: 90%;
+    }
 }
 
 h1 {
@@ -653,52 +669,189 @@ nav.mobile-nav .mobile-menu li a:hover {
 .wow-logo {
   font-family: 'Heebo', 'Arial', sans-serif; /* Use Heebo or another beautiful font */
   font-weight: bold;
-  font-size: 48px; /* Adjust to make it bigger */
-  color: #ff5733; /* Initial color */
+  font-size: 36px; /* Adjusted size to make it smaller */
+  color: #ffd700; /* Initial color */
   position: relative; /* Needed for the pseudo-element */
   padding: 10px; /* Add padding for space around the text */
   display: inline-block; /* Ensures padding works correctly */
   overflow: hidden; /* Hide the animated border line */
   background: #333; /* Background color to match the navbar and ensure visibility */
-  border-radius: 5px; /* Optional: Rounded corners for a polished look */
+  border-radius: 50%; /* Ensure the border follows a circular path */
 }
 
-/* Dashed underline animation */
+/* Rotating dashed border */
 .wow-logo::after {
   content: '';
   position: absolute;
-  bottom: 0; /* Position it at the bottom of the text */
-  left: 0;
-  height: 2px; /* Thickness of the underline */
-  width: 100%;
-  border-bottom: 2px dashed #ff5733; /* Dashed underline with initial color */
-  box-sizing: border-box;
-  transform: scaleX(0);
-  transform-origin: left; /* Start from the left */
-  animation: underline-animation 2s forwards, underline-color-change 4s ease-in-out forwards;
+  top: 50%;
+  left: 50%;
+  width: 140%; /* Increased size to move it farther away */
+  height: 140%;
+  border: 2px dashed #bdbeba; /* Dashed border with initial color */
+  border-radius: 50%; /* Make it circular */
+  transform: translate(-50%, -50%); /* Center it around the text */
+  animation: rotate-border 4s linear infinite; /* Continuous rotation */
 }
 
-/* Keyframes for dashed underline animation */
-@keyframes underline-animation {
+/* Keyframes for rotating the dashed border around the text */
+@keyframes rotate-border {
   0% {
-    transform: scaleX(0);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   100% {
-    transform: scaleX(1);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+/* Dropdown Container */
+.dropdown {
+    position: relative; /* Position relative to enable absolute positioning of dropdown content */
+}
 
-/* Keyframes for changing the color of the dashed underline */
-@keyframes underline-color-change {
-  0% {
-    border-bottom-color: #ff5733;
-  }
-  50% {
-    border-bottom-color: #ffffff; /* Intermediate color */
-  }
-  100% {
-    border-bottom-color: #ff5733;
-  }
+/* Dropdown Button */
+.dropbtn {
+    color: white; /* Text color for dropdown button */
+    font-size: 1em; /* Font size for dropdown button */
+    background: none; /* No background for button */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor on hover */
+    padding: 10px 15px; /* Padding around button */
+    display: block; /* Ensure the padding is clickable */
+}
+
+/* Dropdown Content */
+.dropdown-contentt {
+    display: none; /* Hide dropdown content by default */
+    position: absolute; /* Position dropdown content relative to dropdown container */
+    background-color: #ADD8E6; /* Lightish blue background for dropdown content */
+    min-width: 160px; /* Minimum width of dropdown */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for dropdown */
+    z-index: 1; /* Ensure dropdown content is above other content */
+}
+
+/* Dropdown Links */
+.dropdown-contentt a {
+    color: #333; /* Dark text color for dropdown links */
+    padding: 12px 16px; /* Padding for dropdown links */
+    text-decoration: none; /* Remove underline */
+    display: block; /* Ensure padding is clickable */
+}
+
+/* Dropdown Link Hover */
+.dropdown-contentt a:hover {
+    background-color: #00008B; /* Dark blue background on hover */
+    color: white; /* Text color on hover */
+}
+
+/* Show Dropdown on Hover */
+.dropdown:hover .dropdown-contentt {
+    display: block; /* Show dropdown content when hovering over dropdown container */
+}
+
+/* Style for Dropdown Button on Hover */
+.dropdown:hover .dropbtn {
+    background-color: #003366; /* Dark blue background on hover for button */
+}
+#whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* Ensures the button is above other elements */
+}
+
+#whatsapp-button img {
+  border-radius: 50%; /* Optional: makes the image round */
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the button */
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+#scrollToTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 99;
+  width: 40px;
+  height: 40px;
+  background-color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#scrollToTopBtn:hover {
+  background-color: #333;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  transform: scale(1.1);
+}
+
+
+#scrollToTopBtn.show {
+  display: flex; /* Show button when scrolled */
+}
+
+#scrollToTopBtn:hover {
+  background-color: #333; /* Darker black on hover */
+}
+.popup-message {
+    position: fixed;
+    bottom: 80px; /* Adjust this value as needed */
+    right: 30px; /* Move the popup a little to the left */
+    background-color: #333; /* Dark background color for better readability */
+    color: #fff; /* Light text color */
+    padding: 10px 20px 10px 20px; /* Adjust padding for more space on the left */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    animation: fadeInOut 3s infinite;
+    font-size: 14px; /* Adjust font size if needed */
+    font-weight: 600; /* Slightly bold text */
+    text-align: center; /* Center the text */
+}
+
+.popup-message::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Position it at the bottom edge */
+    right: 10px; /* Adjust to align with the message box */
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent; /* Adjust size of the triangle */
+    border-right: 10px solid transparent; /* Adjust size of the triangle */
+    border-top: 10px solid #333; /* Match the background color */
+}
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
 }
     </style>
 </head>
@@ -707,19 +860,22 @@ nav.mobile-nav .mobile-menu li a:hover {
     <div class="navbar-logo">
       <span class="wow-logo">WOW</span>
     </div>
-        <div class="navbar-toggle" id="navbar-toggle">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-        <ul class="navbar-links" id="navbar-links">
-            <li><a href="index.html" class="nav-link">HOME</a></li>
-            <li><a href="aboutus.html" class="nav-link">ABOUT US</a></li>
-            <li><a href="abstract.html" class="nav-link">ABSTRACT</a></li>
-            <li><a href="awards.html" class="nav-link">AWARDS</a></li>
-            <li><a href="register.html" class="nav-link">REGISTER</a></li>
-        </ul>
-    </nav>
+    <ul class="navbar-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="aboutus.html">ABOUT US</a></li>
+        <li class="dropdown">
+          <a href="" class="dropbtn">AGENDA</a>
+          <div class="dropdown-contentt">
+            <a href="conference.html">Conference</a>
+            <a href="workshop.html">Workshop</a>
+          </div>
+        </li>
+        <li><a href="abstract.html">ABSTRACT</a></li>
+        <li><a href="awards.html">AWARDS</a></li>
+        <li><a href="register.html">REGISTER</a></li>
+        
+    </ul>
+  </nav>
   <!-- Mobile Navbar -->
 <nav class="mobile-nav">
     <div class="hamburger" id="hamburger">
@@ -755,59 +911,59 @@ nav.mobile-nav .mobile-menu li a:hover {
   
 <h4>AWARD CATEGORIES</h4>
     <div class="scroll-container">
-        <div class="scroll-item" style="background-image: url('ss.avif');">
+      <div class="scroll-item" style="background-image: linear-gradient(rgba(219, 210, 80, 0.3), rgba(255, 255, 255, 0.3)), url('piu.avif');text-shadow: 4px 4px 4px rgba(228, 216, 56, 0.952); padding: 20px; font-weight: 900;" >
             <h3>HALL OF FAME </h3>
             <div class="item-details">
-                <p class="item-description">These awards celebrate women who have achieved remarkable accomplishments in their careers or fields of expertise. They recognize women who have excelled in their professions, overcome challenges, and made significant strides in their chosen areas.</p>
+                <p class="item-description" >These awards celebrate women who have achieved remarkable accomplishments in their careers or fields of expertise. They recognize women who have excelled in their professions, overcome challenges, and made significant strides in their chosen areas.</p>
             </div>
         </div>
 
-        <div class="scroll-item" style="background-image: url('ss.avif');">
+        <div class="scroll-item" style="background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('piu.avif');">
             <h3>WOMEN LEADER AWARDS</h3>
             <div class="item-details">
-                <p class="item-description">These awards celebrate women who have achieved remarkable accomplishments in their careers or fields of expertise. They recognize women who have excelled in their professions, overcome challenges, and made significant strides in their chosen areas.</p>
+                <p class="item-description">These awards honor women who have demonstrated exceptional leadership skills and qualities in their respective fields.</p>
             </div>
         </div>
 
-        <div class="scroll-item" style="background-image: url('ss.avif');">
+        <div class="scroll-item" style="background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('piu.avif');">
             <h3>MENTORSHIP AND ADVOCACY AWARDS</h3>
             <div class="item-details2">
-                <p class="item-description">These awards celebrate women who have achieved remarkable accomplishments in their careers or fields of expertise. They recognize women who have excelled in their professions, overcome challenges, and made significant strides in their chosen areas.</p>
+                <p class="item-description">These awards honor women who have demonstrated outstanding mentorship, guidance, and support for others. They recognize women who have made a significant impact by mentoring and advocating for the personal and professional development of other women.</p>
             </div>
         </div>
 
-        <div class="scroll-item" style="background-image: url('ss.avif');">
+        <div class="scroll-item" style="background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('piu.avif');">
             <h3>EMERGE AWARDS</h3>
             <div class="item-details">
-                <p class="item-description">These awards celebrate women who have achieved remarkable accomplishments in their careers or fields of expertise. They recognize women who have excelled in their professions, overcome challenges, and made significant strides in their chosen areas.</p>
+                <p class="item-description">Supporting and encouraging early-career women in DENTISTRY & FACIAL AESTHETICS who have shown exceptional promise, leadership potential, and early achievements in their respective fields, patient care, or advocacy.</p>
             </div>
         </div>
 
-        <div class="scroll-item" style="background-image: url('ss.avif');">
+        <div class="scroll-item" style="background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('piu.avif');">
             <h3>BUSINESS AWARDS</h3>
             <div class="item-details">
-                <p class="item-description">These awards celebrate women who have achieved remarkable accomplishments in their careers or fields of expertise. They recognize women who have excelled in their professions, overcome challenges, and made significant strides in their chosen areas.</p>
+                <p class="item-description">Recognizing outstanding businesses and professionals who’ve left a lasting mark globally as executives, enterprises, and innovators in product development and client servicing. Their contributions have enhanced healthcare, research, and global prevention efforts.</p>
             </div>
         </div>
 
-        <div class="scroll-item" style="background-image: url('ss.avif');">
+        <div class="scroll-item" style="background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('piu.avif');">
             <h3>RESEARCH & INNOVATION AWARDS</h3>
             <div class="item-details">
-                <p class="item-description">These awards celebrate women who have achieved remarkable accomplishments in their careers or fields of expertise. They recognize women who have excelled in their professions, overcome challenges, and made significant strides in their chosen areas.</p>
+                <p class="item-description">Acknowledging women researchers who have made groundbreaking contributions to DENTISTRY & FACIAL AESTHETICS through innovative research projects, discoveries, or advancements in oral biology, treatment, or prevention.</p>
             </div>
         </div>
 
-        <div class="scroll-item" style="background-image: url('ss.avif');">
+        <div class="scroll-item" style="background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('piu.avif');">
             <h3>SOCIAL IMPACT & HUMANITARIAN AWARDS</h3>
             <div class="item-details2">
-                <p class="item-description">These awards celebrate women who have achieved remarkable accomplishments in their careers or fields of expertise. They recognize women who have excelled in their professions, overcome challenges, and made significant strides in their chosen areas.</p>
+                <p class="item-description">These awards honor women who have made a positive impact on society and worked tirelessly to improve the lives of others. They recognize women who have made a difference through philanthropy, advocacy, community service, or humanitarian efforts.</p>
             </div>
         </div>
 
-        <div class="scroll-item" style="background-image: url('ss.avif');">
+        <div class="scroll-item" style="background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('piu.avif');">
             <h3>SCHOLARS AWARDS</h3>
             <div class="item-details">
-                <p class="item-description">These awards celebrate women who have achieved remarkable accomplishments in their careers or fields of expertise. They recognize women who have excelled in their professions, overcome challenges, and made significant strides in their chosen areas.</p>
+                <p class="item-description">Acknowledging students and young researchers who have made  exceptional contribution in academics, research, digital arts and early achievements in their respective fields or advocacy.</p>
             </div>
         </div>
     </div>
@@ -875,11 +1031,6 @@ nav.mobile-nav .mobile-menu li a:hover {
         <label for="telephone">Telephone *</label>
         <input type="tel" id="telephone" name="telephone" placeholder="Enter your valid Phone Number" required>
 
-        <label for="portfolioPhoto">Portfolio Photo *</label>
-        <input type="file" id="portfolioPhoto" name="portfolioPhoto" accept="image/*" required>
-
-        <label for="cv">Upload CV *</label>
-        <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
 
         <div class="declaration">
             <p>
@@ -962,6 +1113,73 @@ nav.mobile-nav .mobile-menu li a:hover {
   <div class="year-line">
     <p id="congress-info">© Copyright 2024 All rights reserved</p>
   </div>
+  <button id="scrollToTopBtn" onclick="scrollToTop()">&uArr;</button>
+  <!-- WhatsApp Integration Button with Tooltip -->
+<div id="whatsapp-button" class="tooltip">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" style="width: 50px; height: 50px; cursor: pointer;">
+  <div class="popup-message">
+    <span>Need help?</span>
+    <span>Click me</span>
+</div>
+  <div id="whatsapp-message" style="display: none;">Hi *Wow congress*! I need more info about Wow congress https://wowcongress.com</div>
+</div>
+<script>
+  // Function to handle scroll behavior
+  function scrollToTop() {
+      // Scroll to the top of the document with smooth behavior
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+      });
+  }
+  
+  // Event listener to show/hide scroll-to-top button based on scroll position
+  window.addEventListener('scroll', function() {
+      var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+  
+      // Show button after scrolling down 300px
+      if (window.scrollY > 300) {
+          scrollToTopBtn.style.display = "block";
+      } else {
+          scrollToTopBtn.style.display = "none";
+      }
+  });
+  
+  
+  </script>
+<script>
+  // Function to open WhatsApp chat with specified message
+function openWhatsAppChat() {
+  // Replace '1234567890' with your WhatsApp number
+  var phoneNumber = '+971 55 909 8802';
+  
+  // Get the message from the hidden div
+  var message = document.getElementById('whatsapp-message').innerText;
+  
+  // Encode the message for use in URL
+  var encodedMessage = encodeURIComponent(message);
+
+  // Construct the WhatsApp URL with phone number and message
+  var whatsappURL = 'https://wa.me/' + 971559098802 + '/?text=' + encodedMessage;
+
+  // Open the WhatsApp chat window in a new tab
+  window.open(whatsappURL, '_blank');
+}
+
+// Event listener to open WhatsApp chat when button is clicked
+document.getElementById('whatsapp-button').addEventListener('click', function() {
+  // Open WhatsApp chat with specified message
+  openWhatsAppChat();
+  
+  // Hide the tooltip after button click
+  var tooltip = document.querySelector('.tooltip .tooltiptext');
+  if (tooltip) {
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.opacity = 0;
+  }
+});
+
+</script>
 <script>
     function myFunction() {
       var x = document.getElementById("myTopnav");
@@ -1049,17 +1267,13 @@ function scrollContainer(direction) {
     
     </script>
     <!-- WhatsApp Integration Button with Tooltip -->
-    <div id="whatsapp-button" class="tooltip">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" style="width: 50px; height: 50px; cursor: pointer;">
-      <span class="tooltiptext">Need Help?</span>
-      <div id="whatsapp-message" style="display: none;">Hi *Wow congress*! I need more info about Wow congress https://wowcongress.com</div>
-    </div>
+    
     
     <script>
       // Function to open WhatsApp chat with specified message
     function openWhatsAppChat() {
       // Replace '1234567890' with your WhatsApp number
-      var phoneNumber = '+971547086278';
+      var phoneNumber = '+971 55 909 8802';
       
       // Get the message from the hidden div
       var message = document.getElementById('whatsapp-message').innerText;
